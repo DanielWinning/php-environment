@@ -1,0 +1,14 @@
+{
+    "name": "danielwinning/php-environment",
+    "description": "A portable PHP development environment.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Winning",
+            "email": "daniel@winningsoftware.co.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
