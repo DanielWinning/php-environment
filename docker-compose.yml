@@ -28,7 +28,7 @@ services:
       - "3306:3306"
     restart: on-failure
     environment:
-      MYSQL_DATABASE: docker
+      MYSQL_DATABASE: ProjectDatabase
       MYSQL_ROOT_PASSWORD: secret
     volumes:
       - ./config/mysql:/var/lib/mysql
