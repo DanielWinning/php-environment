@@ -54,3 +54,20 @@ docker-compose -p project-name up --build -d
 docker-compose -p project-name stop
 docker-compose -p project-name down
 ```
+
+### Alternative Setup
+
+Say you want to create a project but don't necessarily want all this code inside your project directory. Your project:
+
+```
+# Windows
+/c/Development/test-project
+# Mac
+/Users/danny/Development/test-project
+```
+
+To mount your projects code and run it using this environment, simply update the value of `PROJECTDIR` in `docker/.env` to
+the path to your project directory (like shown above). You can use a relative path if you prefer.
+
+If you only want part of your application to be publicly accessible (like your apps `public` directory for example), just follow
+the steps above to update your Nginx document root and then use the start and stop commands as normal.
