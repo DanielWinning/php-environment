@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45e09453a3023f6cda3a173ec9708464",
-    "packages": [],
+    "content-hash": "fffdc3526c8e328468dd7e2da0ef98d2",
+    "packages": [
+        {
+            "name": "danielwinning/color-console",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DanielWinning/color-console.git",
+                "reference": "044d8178ac050b04196a191a7928d8e30b63d3db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DanielWinning/color-console/zipball/044d8178ac050b04196a191a7928d8e30b63d3db",
+                "reference": "044d8178ac050b04196a191a7928d8e30b63d3db",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DanielWinning\\ColorConsole\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Winning",
+                    "email": "daniel@winningwebdesign.co.uk"
+                }
+            ],
+            "description": "A simple, extensible class for printing to the console.",
+            "support": {
+                "issues": "https://github.com/DanielWinning/color-console/issues",
+                "source": "https://github.com/DanielWinning/color-console/tree/0.1.4"
+            },
+            "time": "2022-07-31T22:07:08+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
@@ -14,5 +55,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

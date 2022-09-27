@@ -1,3 +1,0 @@
-<?php
-
-// Build something cool!
