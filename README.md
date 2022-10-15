@@ -24,12 +24,6 @@ To download this development environment, use Composer:
 composer create-project danielwinning/php-environment project-name
 ```
 
-Then run initial setup:
-
-```
-cd project-name && composer install
-```
-
 ## Running a local project
 
 ### Point to your project directory
@@ -64,4 +58,31 @@ server {
 
 ### Building your environment
 
--- Work in progress --
+To start your services, move into the `docker` directory and run the command to build your container:
+
+```
+docker-compose up -p project-name --build -d
+```
+
+This builds and runs a new Docker container, using the `-p` flag to pass in a name for your container (`project-name`). 
+The `--build` command forces Docker to build the images (services) before starting the container, while the `-d` flag
+makes your container run in the background (*detached mode*).
+
+Your project should now be available at `http://localhost`.
+
+To stop your server, use the stop command and pass the project name:
+
+```
+docker-compose stop -p project-name
+```
+
+To restart an already built container, use the up command without `--build`:
+
+```
+docker-compose up -p project-name -d
+```
+
+## Limitations
+
+Currently, in addition to needing to update the `docker/.env` file with the path to your project, each project will use
+the same ports - this means that you won't be able to run two environments at once *unless* you update the ports
