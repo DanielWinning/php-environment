@@ -1,67 +1,19 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+use DanielWinning\DevEnvironment\Commands\DownCommand;
+use DanielWinning\DevEnvironment\Commands\StopCommand;
+use DanielWinning\DevEnvironment\Commands\UpCommand;
 
-use DanielWinning\ColorConsole\Enums\TextModifier;
-use DanielWinning\ColorConsole\Console;
+require_once __DIR__ . '/../vendor/autoload.php';
 
 array_shift($argv);
 $args = $argv;
 
-$commands = include __DIR__ . '/../src/init_commands.php';
+new \DanielWinning\DevEnvironment\Commands\Container\CommandContainer();
 
-/*
- * build container:
- *      php ./bin/dev up --name test --dir /Users/danny/Development/test
- *      -->
- *      Updates PROJECTDIR to /Users/danny/Development/test
- *      -->
- *      Save a configuration so this can be ran by name
- *      -->
-*       docker-compose -p test up --build -d
- * start existing container:
- *      php ./bin/dev up test
- *      -->
- *      See if config exists for name. update env with config. Else throw an error.
- *      -->
- *      docker-compose -p test up -d
- * destroy existing container:
- *      php ./bin/dev down test
- *      -->
- *      See if config exists for name. else throw an error
- *      -->
- *      docker-compose -p test down
- * stop existing container:
- *      php .bin/dev stop test
- *      -->
- *      See if config exists for name. else throw an error
- *      -->
- *      docker-compose -p test stop
- *
- * What kind of services do I have here?
- * - Console output (dealt with by danielwinning/color-console)
- * - Commands
- * - Flags
- * - Cache
- * - Container
- */
-
-// Commands:
-// up [{name}][--dir {dir} --name {name}]
-// down [{name}]
-// stop [{name}]
-
-/*
- * class Command {
- *      private array $validFlags;
- *
- *      public function __construct(array $validFlags)
- *      {
- *          $this->setFlags($validFlags);
- *      }
- * }
- */
-
-// $args[0] should be one of the valid commands above
-
+/*$commands = [
+    new UpCommand(['name', 'build', 'dir']),
+    new DownCommand(['name']),
+    new StopCommand(['name']),
+];*/

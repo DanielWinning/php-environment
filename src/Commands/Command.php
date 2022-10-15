@@ -1,18 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace DanielWinning\DevEnvironment\Commands;
 
-class Command
+abstract class Command
 {
-    private string $name;
-    private array $validFlags;
+    public string $name;
+    private array $flags;
 
     public function __construct(string $name, array $flags)
     {
         $this->setName($name);
-        $this->setValidFlags($flags);
+        $this->setFlags($flags);
     }
 
     private function setName(string $name): void
@@ -20,31 +18,36 @@ class Command
         $this->name = $name;
     }
 
+    private function setFlags(array $flags): void
+    {
+        $this->flags = $flags;
+    }
+
     public function getName(): string
     {
         return $this->name;
     }
 
-    private function setValidFlags(array $flags): void
+    public function getFlags(): array
     {
-        $this->validFlags = $flags;
+        return $this->flags;
     }
 
-    public function getValidFlags(): array
+    private function parseArgs(array $args)
     {
-        return $this->validFlags;
-    }
-
-    private function flagsPassed(array $args): array
-    {
-        $flags = [];
+        $cleanArgs = [];
 
         foreach ($args as $arg) {
-            if (in_array($arg, $this->getValidFlags())) {
-                $flags[] = $arg;
-            }
-        }
+            $argAsArray = \explode('=', $arg);
+            $cleanArgs[$arg['name']] = [
 
-        return $flags;
+            ];
+        }
     }
+
+    abstract public function run(array $args);
 }
+
+/*new Command('up', ['build', 'dir', 'name']);
+new Command('down', ['name']);
+new Command('stop', ['name']);*/
