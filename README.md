@@ -85,4 +85,9 @@ docker-compose up -p project-name -d
 ## Limitations
 
 Currently, in addition to needing to update the `docker/.env` file with the path to your project, each project will use
-the same ports - this means that you won't be able to run two environments at once *unless* you update the ports
+the same ports - this means that you won't be able to run two environments at once *unless* you update the ports set in
+`docker/docker-compose.yaml`, `docker/nginx/Dockerfile`, `docker/nginx/conf.d/default.conf` which is obviously less than 
+ideal. 
+
+The simplest solution currently is to ensure that only 1 container is running at a time. Commands will be added in a
+future release to help make this process easier.
