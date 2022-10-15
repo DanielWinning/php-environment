@@ -1,73 +1,93 @@
-A basic PHP Docker environment; Nginx, PHP 8.1, MySQL
+# PHP Development Environment
 
-### Installation
+A ready to use development environment for PHP.
 
-You will need Docker and Composer installed on your machine. To create
-a new project using this setup, run:
+## Includes
+
+- PHP 8.1
+- Nginx
+- MySQL
+
+## Pre-requisites
+
+This environment requires the following to be installed:
+
+- Docker Desktop
+- PHP
+- Composer
+
+## Installation
+
+To download this development environment, use Composer:
 
 ```
 composer create-project danielwinning/php-environment project-name
-cd project-name
 ```
 
-### How to run
+## Running a local project
 
-This setup is configured to work straight out of the box, to start the
-services run:
+### Point to your project directory
 
-```
-cd docker
-docker-compose up --build -d
-```
-
-This will start up your services, you'll be able to access `src/index.php`
-now in your browser by visiting `http://localhost`.
-
-To stop your containers, use the command:
+Now you've got the environment downloaded, you'll need to edit `/docker/.env`. You can either
+open this up in your IDE/text editor or use something like nano to speed things up:
 
 ```
-docker-compose stop
+nano docker/.env
 ```
 
-You can stop and remove your containers by using:
-
-```
-docker-compose down
-```
-
-#### Configuring
-
-To change your document root to something like 'public', update the value
-in 'docker/nginx/conf.d/default.conf' on line 4: `root /var/www/html/public`
-
-Then in your projects `src` directory, create a new 'public' directory containing
-an `index.php` file to test that it's working.
-
-By default the Docker Compose command above will start up a new container
-group called 'docker' - if you want to use a different name, use the following
-command:
-
-```
-# Start
-docker-compose -p project-name up --build -d
-# Stop
-docker-compose -p project-name stop
-docker-compose -p project-name down
-```
-
-### Alternative Setup
-
-Say you want to create a project but don't necessarily want all this code inside your project directory. Your project:
+Replace the commented out code with the path to your project. So, the path might look something like this:
 
 ```
 # Windows
-/c/Development/test-project
-# Mac
-/Users/danny/Development/test-project
+PROJECTDIR=/c/Development/project-name
+
+# MacOS
+PROJECTDIR=/Users/danny/Development/project-name
 ```
 
-To mount your projects code and run it using this environment, simply update the value of `PROJECTDIR` in `docker/.env` to
-the path to your project directory (like shown above). You can use a relative path if you prefer.
+By default, this environment is set to use the root of your project as your document root. To change this,
+(to something like `project-name/public`) update the `root` value inside `/docker/nginx/conf.d/default.conf`:
 
-If you only want part of your application to be publicly accessible (like your apps `public` directory for example), just follow
-the steps above to update your Nginx document root and then use the start and stop commands as normal.
+```
+server {
+    ...
+    root /var/www/html/public
+    ...
+}
+```
+
+### Building your environment
+
+To start your services, move into the `docker` directory and run the command to build your container:
+
+```
+docker-compose up -p project-name --build -d
+```
+
+This builds and runs a new Docker container, using the `-p` flag to pass in a name for your container (`project-name`). 
+The `--build` command forces Docker to build the images (services) before starting the container, while the `-d` flag
+makes your container run in the background (*detached mode*).
+
+Your project should now be available at `http://localhost`.
+
+To stop your server, use the stop command and pass the project name:
+
+```
+docker-compose stop -p project-name
+```
+
+To restart an already built container, use the up command without `--build`:
+
+```
+docker-compose up -p project-name -d
+```
+
+## Limitations
+
+Currently, in addition to needing to update the `docker/.env` file with the path to your project, each project will use
+the same ports - this means that you won't be able to run two environments at once *unless* you update the ports set in
+`docker/docker-compose.yaml`, `docker/nginx/Dockerfile`, `docker/nginx/conf.d/default.conf` which is obviously less than 
+ideal. 
+
+The simplest solution currently is to ensure that only 1 container is running at a time. Commands will be added in a
+future release to help make this process easier.
