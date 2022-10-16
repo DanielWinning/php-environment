@@ -61,7 +61,7 @@ server {
 To start your services, move into the `docker` directory and run the command to build your container:
 
 ```
-docker-compose up -p project-name --build -d
+docker-compose -p project-name up --build -d
 ```
 
 This builds and runs a new Docker container, using the `-p` flag to pass in a name for your container (`project-name`). 
@@ -73,13 +73,13 @@ Your project should now be available at `http://localhost`.
 To stop your server, use the stop command and pass the project name:
 
 ```
-docker-compose stop -p project-name
+docker-compose -p project-name stop
 ```
 
 To restart an already built container, use the up command without `--build`:
 
 ```
-docker-compose up -p project-name -d
+docker-compose -p project-name up -d
 ```
 
 ## Limitations
