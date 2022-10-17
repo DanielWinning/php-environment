@@ -21,7 +21,7 @@ This environment requires the following to be installed:
 To download this development environment, use Composer:
 
 ```
-composer create-project danielwinning/php-environment project-name
+composer create-project danielwinning/php-environment
 ```
 
 ## Running a local project
@@ -32,7 +32,8 @@ Now you've got the environment downloaded, you'll need to edit `/docker/.env`. Y
 open this up in your IDE/text editor or use something like nano to speed things up:
 
 ```
-nano docker/.env
+dc php-environment/docker
+nano .env
 ```
 
 Replace the commented out code with the path to your project. So, the path might look something like this:
@@ -80,6 +81,12 @@ To restart an already built container, use the up command without `--build`:
 
 ```
 docker-compose -p project-name up -d
+```
+
+To destroy a container, use the down command:
+
+```
+docker-compose -p project-name down
 ```
 
 ## Limitations
