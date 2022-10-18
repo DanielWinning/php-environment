@@ -33,7 +33,7 @@ Now you've got the environment downloaded, you'll need to edit `/docker/.env`. Y
 open this up in your IDE/text editor or use something like nano to speed things up:
 
 ```
-dc php-environment/docker
+cd php-environment/docker
 nano .env
 ```
 
