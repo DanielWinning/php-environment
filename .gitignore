@@ -1,4 +1,5 @@
 /.idea
 /vendor
 /docker/.env.dev
-/docker/rabbitmq
+/docker/rabbitmq/data
+/docker/rabbitmq/log

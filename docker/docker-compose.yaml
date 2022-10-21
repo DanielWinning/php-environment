@@ -26,7 +26,8 @@ services:
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: docker
   rabbitmq:
-    image: rabbitmq:3-management-alpine
+    build:
+      context: ./rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
