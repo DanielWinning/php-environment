@@ -33,4 +33,4 @@ services:
       - "15672:15672"
     volumes:
       - ./rabbitmq/data/:/var/lib/rabbitmq/
-      - ./rabbitmq/log/:/var/log/rabbitmq
+      - ./rabbitmq/log/:/var/log/rabbitmq/
