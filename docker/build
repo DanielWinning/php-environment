@@ -1,4 +1,4 @@
-#!
+#!/usr/bin/env php
 <?php
 
 class EnvironmentBuilder
@@ -27,13 +27,16 @@ class EnvironmentBuilder
 
         if ($this->hasArg('--path')) {
             file_put_contents($envPath, 'PROJECTDIR=' . $this->getArg('--path'));
+        } else {
+            echo "\033[31mError: Please provide the full path to your project directory.\033[0m";
+            exit;
         }
 
         $this->updateCommand('up --build -d');
 
-        echo 'Building your environment, hang tight!' . "\n";
+        echo "\033[34mBuilding your dev environment, hang tight!\033[0m\n";
         exec('cd docker && ' . $this->getCommand() . ' 2>&1');
-        echo 'Environment setup complete!';
+        echo "\033[92mEnvironment setup complete!\033[0m";
     }
 
     private function setCommand(string $command)
