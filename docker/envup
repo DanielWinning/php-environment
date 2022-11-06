@@ -17,7 +17,7 @@ class EnvironmentBuilder
             $this->updateCommand('-p ' . $this->getArg('--name'));
         }
 
-        $dockerDir = __DIR__;
+        $dockerDir = __DIR__ ;
         $envPath = $this->isDev() ? $dockerDir . '/.env.dev' : $dockerDir . '/.env';
         echo $envPath . "\n";
 
@@ -26,6 +26,9 @@ class EnvironmentBuilder
         }
 
         if ($this->hasArg('--path')) {
+            if (!file_exists($envPath)) {
+                fopen($envPath, 'w');
+            }
             file_put_contents($envPath, 'PROJECTDIR=' . $this->getArg('--path'));
         } else {
             echo "\033[31mError: Please provide the full path to your project directory.\033[0m";
@@ -35,7 +38,7 @@ class EnvironmentBuilder
         $this->updateCommand('up --build -d');
 
         echo "\033[34mBuilding your dev environment, hang tight!\033[0m\n";
-        exec('cd docker && ' . $this->getCommand() . ' 2>&1');
+        exec('cd ' . $dockerDir . ' && ' . $this->getCommand() . ' 2>&1');
         echo "\033[92mEnvironment setup complete!\033[0m";
     }
 
