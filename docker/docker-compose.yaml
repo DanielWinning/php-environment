@@ -25,3 +25,12 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: docker
+  rabbitmq:
+    build:
+      context: ./rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq/data/:/var/lib/rabbitmq/
+      - ./rabbitmq/log/:/var/log/rabbitmq/

@@ -1,0 +1,101 @@
+#!/usr/bin/env php
+<?php
+
+class EnvironmentBuilder
+{
+    private bool $dev;
+    private string $command;
+    private array $args;
+
+    public function __construct(array $args)
+    {
+        $this->setCommand('docker-compose');
+        $this->setArgs($this->sortArgs($args));
+        $this->setDev($this->hasArg('--dev'));
+
+        if ($this->hasArg('--name')) {
+            $this->updateCommand('-p ' . $this->getArg('--name'));
+        }
+
+        $dockerDir = __DIR__;
+        $envPath = $this->isDev() ? $dockerDir . '/.env.dev' : $dockerDir . '/.env';
+        echo $envPath . "\n";
+
+        if ($this->isDev()) {
+            $this->updateCommand('--env-file=' . $envPath);
+        }
+
+        if ($this->hasArg('--path')) {
+            file_put_contents($envPath, 'PROJECTDIR=' . $this->getArg('--path'));
+        } else {
+            echo "\033[31mError: Please provide the full path to your project directory.\033[0m";
+            exit;
+        }
+
+        $this->updateCommand('up --build -d');
+
+        echo "\033[34mBuilding your dev environment, hang tight!\033[0m\n";
+        exec('cd docker && ' . $this->getCommand() . ' 2>&1');
+        echo "\033[92mEnvironment setup complete!\033[0m";
+    }
+
+    private function setCommand(string $command)
+    {
+        $this->command = $command;
+    }
+
+    private function setArgs(array $args)
+    {
+        $this->args = $args;
+    }
+
+    private function setDev(bool $dev)
+    {
+        $this->dev = $dev;
+    }
+
+    private function updateCommand(string $command)
+    {
+        $this->command = $this->getCommand() . ' ' . $command;
+    }
+
+    private function getCommand()
+    {
+        return $this->command;
+    }
+
+    private function getArgs()
+    {
+        return $this->args;
+    }
+
+    private function getArg(string $arg)
+    {
+        return $this->getArgs()[$arg];
+    }
+
+    private function isDev()
+    {
+        return $this->dev;
+    }
+
+    private function sortArgs(array $args)
+    {
+        $args = array_slice($args, 1);
+        $returnMap = [];
+
+        foreach ($args as $arg) {
+            $splitArg = explode('=', $arg);
+            $returnMap[$splitArg[0]] = $splitArg[1] ?? null;
+        }
+
+        return $returnMap;
+    }
+
+    private function hasArg(string $arg)
+    {
+        return array_key_exists($arg, $this->getArgs());
+    }
+}
+
+new EnvironmentBuilder($argv);

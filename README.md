@@ -7,6 +7,7 @@ A ready to use development environment for PHP.
 - PHP 8.1
 - Nginx
 - MySQL
+- RabbitMQ
 
 ## Pre-requisites
 
