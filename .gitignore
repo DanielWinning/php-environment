@@ -1,5 +1,7 @@
 /.idea
+/.fleet
 /vendor
 /docker/.env.dev
 /docker/rabbitmq/data
 /docker/rabbitmq/log
+/docker/build.php
