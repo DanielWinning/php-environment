@@ -19,7 +19,6 @@ class EnvironmentBuilder
 
         $dockerDir = __DIR__ ;
         $envPath = $this->isDev() ? $dockerDir . '/.env.dev' : $dockerDir . '/.env';
-        echo $envPath . "\n";
 
         if ($this->isDev()) {
             $this->updateCommand('--env-file=' . $envPath);
@@ -38,7 +37,9 @@ class EnvironmentBuilder
         $this->updateCommand('up --build -d');
 
         echo "\033[34mBuilding your dev environment, hang tight!\033[0m\n";
+
         exec('cd ' . $dockerDir . ' && ' . $this->getCommand() . ' 2>&1');
+
         echo "\033[92mEnvironment setup complete!\033[0m";
     }
 
