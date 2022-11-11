@@ -33,7 +33,7 @@ when installing the package.
 Add 'danielwinning/php-environment/docker' in the aforementioned vendor directory to your
 systems path. On Windows, hit the Windows key and search for "environment variables".
 
-> **Mac Users**
+> **Mac Users**:
 > Add the path to the docker directory to your path by running the command: `sudo nano /etc/paths'
 >
 > You may need to make the environment up script executable by navigating to the docker directory and
