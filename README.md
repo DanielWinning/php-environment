@@ -30,11 +30,11 @@ composer global require danielwinning/php-environment
 Make a note of the path to your global composer vendor directory which will be displayed
 when installing the package.
 
-Add 'danielwinning/php-environment/docker' in the aforementioned vendor directory to your
+Add `danielwinning/php-environment/docker` in the aforementioned vendor directory to your
 systems path. On Windows, hit the Windows key and search for "environment variables".
 
 > **Mac Users**:
-> Add the path to the docker directory to your path by running the command: `sudo nano /etc/paths'
+> Add the path to the docker directory to your path by running the command: `sudo nano /etc/paths`
 >
 > You may need to make the environment up script executable by navigating to the docker directory and
 > running `chmod +x envup`
@@ -55,3 +55,5 @@ This command expects an absolute path, like the examples below:
 envup --name=windows_project --path=C:/Users/Danny/Development/windows_project
 envup --name=mac_project --path=/Users/danny/Development/mac_project
 ```
+
+Now hit localhost in your browser!
