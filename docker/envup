@@ -40,7 +40,7 @@ class EnvironmentBuilder
 
         exec('cd ' . $dockerDir . ' && ' . $this->getCommand() . ' 2>&1');
 
-        echo "\033[92mEnvironment setup complete!\033[0m";
+        echo "\033[92mEnvironment setup complete!\033[0m\n";
     }
 
     private function setCommand(string $command)
