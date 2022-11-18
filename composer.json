@@ -14,7 +14,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Environment\\": "src/"
+            "Environment\\": "docker/environment/"
         }
     }
 }
