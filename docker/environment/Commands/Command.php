@@ -40,7 +40,16 @@ class Command
         $this->getOutput()
             ->writeMessage(
                 'Error: ' . $message,
-                Console::text(['bold', 'white']) . Console::bg('red')
+                Console::text(['bold', 'bright_white']) . Console::bg('bright_red')
+            );
+    }
+
+    protected function writeSuccessMessage(string $message): void
+    {
+        $this->getOutput()
+            ->writeMessage(
+                $message,
+                Console::text(['bold', 'bright_white']) . Console::bg('bright_green')
             );
     }
 }

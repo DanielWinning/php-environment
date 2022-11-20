@@ -2,8 +2,6 @@
 
 namespace WinningSoftware\Environment\Commands;
 
-use WinningSoftware\ConsoleColours\ConsoleColour as Console;
-
 class BuildCommand extends Command
 {
     public function __construct()
@@ -37,15 +35,20 @@ class BuildCommand extends Command
         $dockerDir = __DIR__ . '/../../';
         $dataDir = $dockerDir . 'data/';
 
+        $environmentConfig = $dataDir . 'app.json';
+
         \mkdir($dataDir . $name, 0755, true);
 
         $projectConfigDir = $dataDir . $name;
 
         \file_put_contents($projectConfigDir . '/.env', 'PROJECTDIR=' . $path);
+        \file_put_contents($environmentConfig, '{\"current\": \"' . $name . '\"}');
 
         $changeDirCommand = "cd $dockerDir";
-        $dockerComposeCommand = "docker-compose -p=$name --env-file=$projectConfigDir/.env up --build -d";
+        $dockerComposeCommand = "docker-compose -p $name --env-file=$projectConfigDir/.env up --build -d";
 
-        exec("$changeDirCommand && $dockerComposeCommand");
+        \exec("$changeDirCommand && $dockerComposeCommand 2>&1", $output, $error);
+
+        $this->writeSuccessMessage('Environment built!');
     }
 }
