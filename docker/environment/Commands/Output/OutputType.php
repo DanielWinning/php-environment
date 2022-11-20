@@ -1,6 +1,6 @@
 <?php
 
-namespace DanielWinning\Environment\Commands\Output;
+namespace WinningSoftware\Environment\Commands\Output;
 
 class OutputType
 {

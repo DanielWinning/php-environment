@@ -1,8 +1,8 @@
 <?php
 
-namespace DanielWinning\Environment\Builder;
+namespace WinningSoftware\Environment\Builder;
 
-use DanielWinning\Environment\Commands\Command;
+use WinningSoftware\Environment\Commands\Command;
 
 class Builder
 {

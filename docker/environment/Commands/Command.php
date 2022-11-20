@@ -1,9 +1,9 @@
 <?php
 
-namespace DanielWinning\Environment\Commands;
+namespace WinningSoftware\Environment\Commands;
 
-use DanielWinning\Environment\Commands\Output\Output;
-use DanielWinning\Environment\Commands\Output\OutputType;
+use WinningSoftware\Environment\Commands\Output\Output;
+use WinningSoftware\Environment\Commands\Output\OutputType;
 
 class Command
 {

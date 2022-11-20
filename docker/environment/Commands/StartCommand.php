@@ -1,6 +1,6 @@
 <?php
 
-namespace DanielWinning\Environment\Commands;
+namespace WinningSoftware\Environment\Commands;
 
 class StartCommand extends Command
 {
