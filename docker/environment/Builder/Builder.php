@@ -42,17 +42,22 @@ class Builder
         return $this->commands;
     }
 
-    public function run()
+    public function run(): void
     {
         if (!\count($this->getArguments())) {
-            echo '-- Help Manual --' . "\n";
+            if (isset($this->getCommands()['help'])) {
+                $this->getCommands()['help']->execute();
+            }
+
             exit;
         }
 
         if (\array_key_exists($this->getArguments()[0], $this->getCommands())) {
             $this->getCommands()[$this->getArguments()[0]]->execute($this->getArguments());
-        } else {
-            echo 'Command does not exist' . "\n";
+            exit;
         }
+
+        echo 'Command does not exist' . "\n";
+        exit;
     }
 }
