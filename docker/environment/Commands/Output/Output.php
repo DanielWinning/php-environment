@@ -2,7 +2,7 @@
 
 namespace WinningSoftware\Environment\Commands\Output;
 
-use WinningSoftware\ConsoleColours\ConsoleColour;
+use WinningSoftware\ConsoleColours\ConsoleColour as Console;
 
 class Output
 {
@@ -10,12 +10,7 @@ class Output
 
     public function __construct()
     {
-        $this->setOutputTypes([
-            OutputType::INFO => ConsoleColour::FG_BLUE,
-            OutputType::SUCCESS => ConsoleColour::BG_BRIGHT_GREEN . ConsoleColour::FG_WHITE,
-            OutputType::ERROR => ConsoleColour::BG_RED . ConsoleColour::FG_WHITE,
-            OutputType::TEXT => ConsoleColour::FG_WHITE,
-        ]);
+
     }
 
     private function getOutputTypes(): array
@@ -28,10 +23,13 @@ class Output
         $this->outputTypes = $outputTypes;
     }
 
-    public function writeMessage(string $message, string $type)
+    public function writeMessage(string $message, string $modifiers = ''): void
     {
-        if (\array_key_exists($type, $this->getOutputTypes())) {
-            echo $this->getOutputTypes()[$type] . $message . ConsoleColour::RESET . "\n";
-        }
+        echo $modifiers . $message . Console::text(['RESET']) . "\n";
+    }
+
+    public function blankLine(): void
+    {
+        echo "\n";
     }
 }

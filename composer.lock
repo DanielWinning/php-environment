@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f81354efabbd5f1a4fe1eed0a789457",
+    "content-hash": "f68f69e79fbe261b3a0378c83e765b5a",
     "packages": [
         {
             "name": "winningsoftware/console-colours",
-            "version": "0.1.2",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DanielWinning/console-colours.git",
-                "reference": "306e2838664817ae905d1ce67a279b0714e0009b"
+                "reference": "b8de43211ff0e7f8b4886393c6326967b9db222a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DanielWinning/console-colours/zipball/306e2838664817ae905d1ce67a279b0714e0009b",
-                "reference": "306e2838664817ae905d1ce67a279b0714e0009b",
+                "url": "https://api.github.com/repos/DanielWinning/console-colours/zipball/b8de43211ff0e7f8b4886393c6326967b9db222a",
+                "reference": "b8de43211ff0e7f8b4886393c6326967b9db222a",
                 "shasum": ""
             },
             "type": "library",
@@ -38,9 +38,9 @@
             ],
             "support": {
                 "issues": "https://github.com/DanielWinning/console-colours/issues",
-                "source": "https://github.com/DanielWinning/console-colours/tree/0.1.2"
+                "source": "https://github.com/DanielWinning/console-colours/tree/0.3.0"
             },
-            "time": "2022-11-19T22:27:27+00:00"
+            "time": "2022-11-20T11:12:48+00:00"
         }
     ],
     "packages-dev": [],

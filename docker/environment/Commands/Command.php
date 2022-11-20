@@ -30,28 +30,8 @@ class Command
         return $this->output;
     }
 
-    private function setOutput(Output $output)
+    private function setOutput(Output $output): void
     {
         $this->output = $output;
-    }
-
-    protected function writeErrorMessage(string $message): void
-    {
-        $this->getOutput()->writeMessage($message, OutputType::ERROR);
-    }
-
-    protected function writeSuccessMessage(string $message): void
-    {
-        $this->getOutput()->writeMessage($message, OutputType::SUCCESS);
-    }
-
-    protected function writeInfoMessage(string $message): void
-    {
-        $this->getOutput()->writeMessage($message, OutputType::INFO);
-    }
-
-    protected function writeTextMessage(string $message): void
-    {
-        $this->getOutput()->writeMessage($message, OutputType::TEXT);
     }
 }
