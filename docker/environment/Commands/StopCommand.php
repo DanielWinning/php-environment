@@ -10,8 +10,10 @@ class StopCommand extends Command
         $this->setName('stop');
     }
 
-    public function execute(): void
+    public function execute(array $arguments): void
     {
-        // Silence
+        if (\count($arguments) !== 2) {
+            $this->writeErrorMessage('invalid number of arguments supplied to the stop command');
+        }
     }
 }

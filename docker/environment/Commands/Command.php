@@ -2,8 +2,8 @@
 
 namespace WinningSoftware\Environment\Commands;
 
+use WinningSoftware\ConsoleColours\ConsoleColour as Console;
 use WinningSoftware\Environment\Commands\Output\Output;
-use WinningSoftware\Environment\Commands\Output\OutputType;
 
 class Command
 {
@@ -33,5 +33,14 @@ class Command
     private function setOutput(Output $output): void
     {
         $this->output = $output;
+    }
+
+    protected function writeErrorMessage(string $message): void
+    {
+        $this->getOutput()
+            ->writeMessage(
+                'Error: ' . $message,
+                Console::text(['bold', 'white']) . Console::bg('red')
+            );
     }
 }
