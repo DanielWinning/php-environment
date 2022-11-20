@@ -15,5 +15,8 @@
         "psr-4": {
             "DanielWinning\\Environment\\": "docker/environment/"
         }
+    },
+    "require": {
+        "winningsoftware/console-colours": "0.1.2"
     }
 }

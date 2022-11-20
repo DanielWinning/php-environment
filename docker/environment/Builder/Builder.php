@@ -50,7 +50,7 @@ class Builder
         }
 
         if (\array_key_exists($this->getArguments()[0], $this->getCommands())) {
-            $this->getCommands()[$this->getArguments()[0]]->execute();
+            $this->getCommands()[$this->getArguments()[0]]->execute($this->getArguments());
         } else {
             echo 'Command does not exist' . "\n";
         }

@@ -4,8 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1769001611acefa04e513dd16c73316a",
-    "packages": [],
+    "content-hash": "2f81354efabbd5f1a4fe1eed0a789457",
+    "packages": [
+        {
+            "name": "winningsoftware/console-colours",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DanielWinning/console-colours.git",
+                "reference": "306e2838664817ae905d1ce67a279b0714e0009b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DanielWinning/console-colours/zipball/306e2838664817ae905d1ce67a279b0714e0009b",
+                "reference": "306e2838664817ae905d1ce67a279b0714e0009b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WinningSoftware\\ConsoleColours\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Winning",
+                    "email": "daniel@winningsoftware.co.uk"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/DanielWinning/console-colours/issues",
+                "source": "https://github.com/DanielWinning/console-colours/tree/0.1.2"
+            },
+            "time": "2022-11-19T22:27:27+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",

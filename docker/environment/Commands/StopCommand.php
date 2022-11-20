@@ -6,11 +6,12 @@ class StopCommand extends Command
 {
     public function __construct()
     {
+        parent::__construct();
         $this->setName('stop');
     }
 
     public function execute(): void
     {
-        echo 'Hello, stop command!' . "\n";
+        // Silence
     }
 }
