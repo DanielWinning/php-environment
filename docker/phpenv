@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use WinningSoftware\Environment\Builder\Builder;
+use WinningSoftware\Environment\Commands\BuildCommand;
+use WinningSoftware\Environment\Commands\DestroyCommand;
+use WinningSoftware\Environment\Commands\HelpCommand;
+use WinningSoftware\Environment\Commands\StartCommand;
+use WinningSoftware\Environment\Commands\StopCommand;
+
+$builder = new Builder($argv);
+
+$builder->registerCommands([
+    new BuildCommand,
+    new StopCommand,
+    new StartCommand,
+    new DestroyCommand,
+    new HelpCommand,
+]);
+
+$builder->run();

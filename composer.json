@@ -1,5 +1,5 @@
 {
-    "name": "danielwinning/php-environment",
+    "name": "winningsoftware/php-environment",
     "version": "2.0.5",
     "description": "A portable PHP development environment.",
     "type": "project",
@@ -11,5 +11,12 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "WinningSoftware\\Environment\\": "docker/environment/"
+        }
+    },
+    "require": {
+        "winningsoftware/console-colours": "0.3.0"
+    }
 }
