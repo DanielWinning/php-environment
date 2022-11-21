@@ -35,14 +35,11 @@ class BuildCommand extends Command
         $dockerDir = __DIR__ . '/../../';
         $dataDir = $dockerDir . 'data/';
 
-        $environmentConfig = $dataDir . 'app.json';
-
         \mkdir($dataDir . $name, 0755, true);
 
         $projectConfigDir = $dataDir . $name;
 
         \file_put_contents($projectConfigDir . '/.env', 'PROJECTDIR=' . $path);
-        \file_put_contents($environmentConfig, '{\"current\": \"' . $name . '\"}');
 
         $changeDirCommand = "cd $dockerDir";
         $dockerComposeCommand = "docker-compose -p $name --env-file=$projectConfigDir/.env up --build -d";
