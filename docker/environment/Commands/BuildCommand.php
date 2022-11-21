@@ -39,7 +39,7 @@ class BuildCommand extends Command
 
         $projectConfigDir = $dataDir . $name;
 
-        \file_put_contents($projectConfigDir . '/.env', 'PROJECTDIR=' . $path);
+        \file_put_contents($projectConfigDir . '/.env', 'PROJECTDIR=' . $path . PHP_EOL . 'PROJECTNAME=' . $name);
 
         $changeDirCommand = "cd $dockerDir";
         $dockerComposeCommand = "docker-compose -p $name --env-file=$projectConfigDir/.env up --build -d";
