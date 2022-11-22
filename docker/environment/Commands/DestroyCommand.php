@@ -30,6 +30,17 @@ class DestroyCommand extends Command
 
         \exec("cd $dockerDir && docker-compose -p $name down");
         \unlink($projectEnvFile);
+
+        if (\file_exists($projectDataDir . 'mysql/')) {
+            $fileSystemIterator = new \FilesystemIterator($projectDataDir . 'mysql/');
+
+            foreach ($fileSystemIterator as $file) {
+                \unlink($file);
+            }
+
+            \rmdir($projectDataDir . 'mysql/');
+        }
+
         \rmdir($projectDataDir);
     }
 }
