@@ -18,16 +18,17 @@ class StartCommand extends Command
         }
 
         $name = $arguments[1];
-        $dockerDir = __DIR__ . '/../../';
-        $dataDir = $dockerDir . 'data/';
-        $projectDataDir = $dataDir . $name;
-        $projectEnvFile = $projectDataDir . '/.env';
 
-        if (!\file_exists($projectEnvFile)) {
+        $this->getOutput()->writeMessage('Starting ' . $name);
+
+        $paths = $this->getEnvironmentPaths($name);
+
+        if (!\file_exists($paths['projectEnvFile'])) {
             $this->writeErrorMessage('the project ' . $name . ' does not exist');
             exit;
         }
 
-        \exec("cd $dockerDir && docker-compose -p $name --env-file=$projectEnvFile up -d");
+        \exec("cd {$paths['dockerDir']} && docker-compose -p $name --env-file={$paths['projectEnvFile']} up -d");
+        $this->writeSuccessMessage('Environment started');
     }
 }

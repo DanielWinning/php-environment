@@ -32,6 +32,8 @@ class BuildCommand extends Command
             exit;
         }
 
+        $this->getOutput()->writeMessage('Building environment, hang tight');
+
         $dockerDir = __DIR__ . '/../../';
         $dataDir = $dockerDir . 'data/';
 
@@ -46,6 +48,6 @@ class BuildCommand extends Command
 
         \exec("$changeDirCommand && $dockerComposeCommand 2>&1", $output, $error);
 
-        $this->writeSuccessMessage('Environment built!');
+        $this->writeSuccessMessage('Environment built');
     }
 }

@@ -18,10 +18,11 @@ class StopCommand extends Command
         }
 
         $name = $arguments[1];
+        $paths = $this->getEnvironmentPaths($name);
         $dockerDir = __DIR__ . '/../../';
 
         $this->getOutput()->writeMessage('Stopping containers for ' . $name);
-        exec("cd $dockerDir && docker-compose -p $name stop");
+        exec("cd {$paths['dockerDir']} && docker-compose -p $name --env-file={$paths['projectEnvFile']} stop");
         $this->writeSuccessMessage('Environment powered down');
     }
 }

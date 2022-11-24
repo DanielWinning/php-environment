@@ -18,29 +18,40 @@ class DestroyCommand extends Command
         }
 
         $name = $arguments[1];
-        $dockerDir = __DIR__ . '/../../';
-        $dataDir = $dockerDir . 'data/';
-        $projectDataDir = $dataDir . $name;
-        $projectEnvFile = $projectDataDir . '/.env';
+        $paths = $this->getEnvironmentPaths($name);
 
-        if (!\file_exists($projectEnvFile)) {
+        if (!\file_exists($paths['projectEnvFile'])) {
             $this->writeErrorMessage('the project ' . $name . ' does not exist');
             exit;
         }
 
-        \exec("cd $dockerDir && docker-compose -p $name down");
-        \unlink($projectEnvFile);
+        $this->getOutput()->writeMessage('Removing environment');
 
-        if (\file_exists($projectDataDir . 'mysql/')) {
-            $fileSystemIterator = new \FilesystemIterator($projectDataDir . 'mysql/');
+        \exec("cd {$paths['dockerDir']} && docker-compose --env-file={$paths['projectEnvFile']} -p $name down");
+        \unlink($paths['projectEnvFile']);
+
+        if (\file_exists($paths['projectDataDir'] . '/mysql')) {
+            $fileSystemIterator = new \FilesystemIterator($paths['projectDataDir'] . '/mysql');
 
             foreach ($fileSystemIterator as $file) {
-                \unlink($file);
+                if (\is_dir($file)) {
+                    $directoryIterator = new \FilesystemIterator($file);
+
+                    foreach ($directoryIterator as $nestedFile) {
+                        \unlink($nestedFile);
+                    }
+
+                    \rmdir($file);
+                } else {
+                    \unlink($file);
+                }
             }
 
-            \rmdir($projectDataDir . 'mysql/');
+            \rmdir($paths['projectDataDir'] . '/mysql/');
         }
 
-        \rmdir($projectDataDir);
+        \rmdir($paths['projectDataDir']);
+
+        $this->writeSuccessMessage('Environment destroyed');
     }
 }

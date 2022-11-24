@@ -52,4 +52,19 @@ class Command
                 Console::text(['bold', 'bright_white']) . Console::bg('bright_green')
             );
     }
+
+    protected function getEnvironmentPaths(string $projectName): array
+    {
+        $dockerDir = __DIR__ . '/../../';
+        $dataDir = $dockerDir . 'data/';
+        $projectDataDir = $dataDir . $projectName;
+        $projectEnvFile = $projectDataDir . '/.env';
+
+        return [
+            'dockerDir' => $dockerDir,
+            'dataDir' => $dataDir,
+            'projectDataDir' => $projectDataDir,
+            'projectEnvFile' => $projectEnvFile,
+        ];
+    }
 }
