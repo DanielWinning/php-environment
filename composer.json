@@ -17,6 +17,6 @@
         }
     },
     "require": {
-        "winningsoftware/console-colours": "0.3.1"
+        "winningsoftware/console-colours": "0.3.0"
     }
 }
