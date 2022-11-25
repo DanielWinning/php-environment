@@ -18,9 +18,9 @@ class HelpCommand extends Command
 
         $output->writeMessage('PHP Environment Setup', Console::text(['bold', 'blue']));
         $output->blankLine();
-        $output->writeMessage('-- phpenv build <name> <project>   : Build a new named environment and start it');
+        $output->writeMessage('-- phpenv build <name> <path>      : Build a new named environment and start it');
         $output->writeMessage('-- phpenv start <name>             : Start a named environment');
-        $output->writeMessage('-- phpenv stop                     : Stops the currently running environment');
+        $output->writeMessage('-- phpenv stop <name>              : Stops the named environment');
         $output->writeMessage('-- phpenv destroy <name>           : Destroys the named environment');
     }
 }
