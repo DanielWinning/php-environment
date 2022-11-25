@@ -22,5 +22,6 @@ class HelpCommand extends Command
         $output->writeMessage('-- phpenv start <name>             : Start a named environment');
         $output->writeMessage('-- phpenv stop <name>              : Stops the named environment');
         $output->writeMessage('-- phpenv destroy <name>           : Destroys the named environment');
+        $output->writeMessage('-- phpenv list                     : Lists environments configured with phpenv');
     }
 }
